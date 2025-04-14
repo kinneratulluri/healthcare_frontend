@@ -16,7 +16,7 @@ function DoctorProfile() {
                 const res = await fetchDoctorProfile(id)
 
                 setDoctor(res.doctorDetails)
-                console.log(res.data)
+                console.log(res)
             }
             catch (error) {
                 console.error("Failed to fetch doctor details:", error)
