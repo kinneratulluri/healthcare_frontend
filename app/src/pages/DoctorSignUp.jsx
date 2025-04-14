@@ -2,8 +2,10 @@ import React, { useState } from 'react'
 import { doctorSignUp } from '../services/doctor.service.js';
 import Input from '../components/ui/Input.jsx';
 import Button from '../components/ui/Button.jsx';
+import { useNavigate } from 'react-router-dom';
 const DoctorSignUp = () => {
     //STORE AND UPDATE ALL FIELDS
+    const navigate=useNavigate()
     const [formdata, setFormData] = useState({
         name: '',
         email: '',
@@ -27,12 +29,13 @@ const DoctorSignUp = () => {
             //POST DATA INTO BACKEND AND FETCH AND STORE IN RES
             const res = await doctorSignUp(formdata)
             //STORE TOKEN
-            localStorage.setItem('doctorToken', res.data.token)
+            localStorage.setItem('doctorToken', res.token)
             setSuccess('Signup successfull !')
-
+            navigate("/login")
         }
         catch (err) {
-            setError(err.response?.data?.message || 'signup failed');
+            console.log(err)
+            ///setError(err.response?.data?.message || 'signup failed');
         }
     }
     return (
