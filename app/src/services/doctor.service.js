@@ -11,7 +11,13 @@ export const fetchDoctorProfile = async(id)=>{
 }
 
 export const allDoctors = async()=>{
+
     const response = await axios.get(`${apiUrl}/api/v1/patient/availableDoctors`)
 
     return response.data
 }
+
+export const doctorLogin = async (formData) => {
+    const response = await axios.post(`${apiUrl}/api/v1/doctor/login`, formData);
+    return response.data;
+};
